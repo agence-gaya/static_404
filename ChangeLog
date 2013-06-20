@@ -1,0 +1,21 @@
+2013-05-31 Benoit CHENU  <contact@gaya.fr>
+
+	* release of version 1.0.0
+	* initial release for TER
+
+2013-05-10 Benoit CHENU  <contact@gaya.fr>
+
+	* release of version 0.3.0
+	* generate a default 404, useful for apache ErrorDocument directive
+	* remove static declarations on methods
+	* allowing class to be extended (XCLASS)
+
+2013-02-22 Rémy DANIEL  <contact@gaya.fr>
+
+	* release of version 0.2.0
+	* better error handling
+	* documentation
+
+2013-02-21 Rémy DANIEL  <contact@gaya.fr>
+
+	* release of version 0.1.0

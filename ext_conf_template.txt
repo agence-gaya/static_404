@@ -1,0 +1,2 @@
+# cat=basic/links; type=string; label=404 page IDs:Comma separated UID list of the 404 pages
+all404Pids =
