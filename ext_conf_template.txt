@@ -1,2 +1,5 @@
 # cat=basic/links; type=string; label=404 page IDs:Comma separated UID list of the 404 pages
 all404Pids =
+
+# cat=basic/enable; type=boolean; label=Disable pageNotFound_handling hook: Delegate handling hook to an other plugin
+disablePageNotFound_handling = 0

@@ -41,7 +41,6 @@ class tx_static404 {
 	/**
 	 * This function will be called by the clearCachePostProc hook
 	 *
-	 * @throws t3lib_error_Exception
 	 * @param array $params
 	 * @param object $pObj
 	 * @return  void
@@ -183,6 +182,27 @@ class tx_static404 {
 		}
 
 		return $domains;
+	}
+
+	/**
+	 * Render the 404 page
+	 *
+	 * Can be used by another plugin to render the 404 page
+	 *
+	 * @throws \RuntimeException
+	 * @see disablePageNotFound_handling
+	 */
+	public function render404AndExit() {
+		$readFile = t3lib_div::getFileAbsFileName('typo3temp/tx_static404-'.t3lib_div::getIndpEnv('TYPO3_HOST_ONLY').'.html');
+		if (!@is_file($readFile)) {
+			throw new t3lib_error_Exception('Enable to find static 404 file. Try to clear Typo3 cache.');
+		}
+		header('HTTP/1.0 404 Not Found', null, 404);
+		$fileContent = t3lib_div::getUrl($readFile);
+		$fileContent = str_replace('###CURRENT_URL###', t3lib_div::getIndpEnv('REQUEST_URI'), $fileContent);
+		$fileContent = str_replace('###REASON###', htmlspecialchars($funcRef['reasonText']), $fileContent);
+		echo $fileContent;
+		exit;
 	}
 }
 

@@ -41,6 +41,16 @@ The plugin handles multidomain installation, and multilingual websites (if they 
     
     ```
     ErrorDocument 404 /typo3temp/tx_static404-default.html
+
+## Additionnal configuration
+
+1.  Disable pageNotFound handling : if you have an other plugin which needs to handle the pageNotfound hook, you can enable this option to delegate it. In your plugin, you will have to manage the 404 by adding this lines :
+
+    ```
+    if (t3lib_extMgm::isLoaded('static_404')) {
+        $static404 = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('tx_static404');
+        $static404->render404AndExit();
+    }
     ```
 
 ## Troubleshootings
