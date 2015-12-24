@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array (
 	'description' => 'Cache the 404 page as a static html file. See: https://github.com/agence-gaya/static_404',
 	'category' => 'misc',
 	'shy' => 0,
-	'version' => '1.1.0',
+	'version' => '1.2.0',
 	'dependencies' => '',
 	'conflicts' => '',
 	'priority' => '',
@@ -36,8 +36,7 @@ $EM_CONF[$_EXTKEY] = array (
 	array (
 		'depends' => 
 		array (
-			'php' => '5.0.0-5.4.99',
-			'typo3' => '4.5.0-6.1.99',
+			'typo3' => '7.6.0-7.6.99',
 		),
 		'conflicts' => '',
 		'suggests' => 

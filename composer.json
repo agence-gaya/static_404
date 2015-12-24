@@ -1,0 +1,15 @@
+{
+  "name": "gaya/static_404",
+  "description": "Cache the 404 page as a static html file",
+  "require": {
+    "typo3/cms": "~7.6"
+  },
+  "type": "typo3-cms-extension",
+  "keywords": [
+    "TYPO3 CMS",
+    "404"
+  ],
+  "homepage": "https://github.com/agence-gaya/static_404",
+  "license": "GPL-2.0+",
+  "version": "1.2.0"
+}
