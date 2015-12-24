@@ -1,5 +1,5 @@
 {
-  "name": "gaya/static_404",
+  "name": "gaya/static-404",
   "description": "Cache the 404 page as a static html file",
   "require": {
     "typo3/cms": "~7.6"
