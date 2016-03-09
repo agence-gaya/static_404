@@ -3,3 +3,6 @@ all404Pids =
 
 # cat=basic/enable; type=boolean; label=Disable pageNotFound_handling hook: Delegate handling hook to an other plugin
 disablePageNotFound_handling = 0
+
+# cat=basic/enable; type=boolean; label=Do not generate static 404 pages for domain records with a redirect
+excludeDomainsWithRedirect = 1

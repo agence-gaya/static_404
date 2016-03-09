@@ -39,6 +39,13 @@ class tx_static404 {
 	 */
 	static public $TEMP_FILENAME_PREFIX = 'tx_static404';
 
+	private $extConf = null;
+
+	public function __construct() {
+		// load the extension configuration
+		$this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['static_404']);
+	}
+
 	/**
 	 * This function will be called by the clearCachePostProc hook
 	 *
@@ -72,15 +79,12 @@ class tx_static404 {
 		/** @var \TYPO3\CMS\Core\Authentication\BackendUserAuthentication $beUser */
 		$beUser =  $GLOBALS['BE_USER'];
 
-		// load the extension configuration
-		$extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['static_404']);
-
-		if (!is_array($extConf) || empty($extConf['all404Pids'])) {
+		if (!is_array($this->extConf) || empty($this->extConf['all404Pids'])) {
 			throw new \TYPO3\CMS\Core\Error\Exception('The extension is not properly configured. Please visit the configuration tab in the extension manager');
 		}
 
 		// extract each page id
-		$pageUids = GeneralUtility::intExplode(',', $extConf['all404Pids'], true);
+		$pageUids = GeneralUtility::intExplode(',', $this->extConf['all404Pids'], true);
 		if (empty($pageUids) || !$pageUids[0]) {
 			throw new \TYPO3\CMS\Core\Error\Exception('Unable to find a valid 404 pid in the configuration. Please visit the configuration tab in the extension manager');
 		}
@@ -161,7 +165,8 @@ class tx_static404 {
 
 			// Find every sys_domain records configured in page rootline
 			foreach ($rootLine as $row) {
-				$dRec = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecordsByField('sys_domain', 'pid', $row['uid'], ' AND redirectTo=\'\' AND hidden=0', '', 'sorting');
+				$constraint = ($this->extConf['excludeDomainsWithRedirect'] ? ' AND redirectTo=\'\' AND hidden=0' : ' AND hidden=0');
+				$dRec = \TYPO3\CMS\Backend\Utility\BackendUtility::getRecordsByField('sys_domain', 'pid', $row['uid'], $constraint, '', 'sorting');
 
 				if (is_array($dRec)) {
 					foreach ($dRec as $dRecord) {
