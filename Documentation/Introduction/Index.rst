@@ -24,6 +24,6 @@ Typo3 generates the 404 page with a loopback call. In FastCGI/php-fpm configurat
 What does it do?
 ----------------
 
-The static 404 file is automatically generated when the page cache is cleared from the BE, then cached in typo3temp/. When a 404 occurs, the generated file is directly send to the client without loopback call.
+The static 404 file is automatically generated when the page cache is cleared from the BE, then cached in typo3temp/tx_static404/. When a 404 occurs, the generated file is directly send to the client without loopback call.
 
 The plugin handles multidomain installation, and multilingual websites (if they are on separate domains).

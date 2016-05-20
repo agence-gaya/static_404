@@ -18,25 +18,25 @@ Installation
 
 2. In the extension manager, in the configuration tab of the extension, specify the page ID of your 404 page. If you have more than one 404 page (on a multi-domain installation), you can put several IDs separated by a comma. The first ID will be used as default 404 (see below)
 
-3. Clear TYPO3 page cache. This will create the static 404 page in typo3temp/.
+3. Clear TYPO3 page cache. This will create the static 404 page in typo3temp/tx_static404/.
 
 4. In your .htaccess file or in your virtualhost (preferable for a multi-domain installation), configure the ErrorDocument directive to point to the new 404 file. Below an excerpt of the .htaccess file with the needed RewriteRule
 
 ::
 
-	ErrorDocument 404 /typo3temp/tx_static404-[YOU FULL DOMAIN NAME HERE].html
+	ErrorDocument 404 /typo3temp/tx_static404/[YOU FULL DOMAIN NAME HERE].html
 
 Replace `[YOU FULL DOMAIN NAME HERE]` by the domain of your installation, ie. :
 
 ::
 
-	ErrorDocument 404 /typo3temp/tx_static404-fr.example.com.html
+	ErrorDocument 404 /typo3temp/tx_static404/fr.example.com.html
 
 You can also use the default 404, which corresponds to the first page ID defined :
 
 ::
 
-	ErrorDocument 404 /typo3temp/tx_static404-default.html
+	ErrorDocument 404 /typo3temp/tx_static404/default.html
 
 
 Additionnal configuration
