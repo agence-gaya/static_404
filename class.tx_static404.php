@@ -37,7 +37,7 @@ class tx_static404 {
 	 * If you change this name, be sure to update the rewrite rule in htaccess
 	 * @var string
 	 */
-	static public $TEMP_FILENAME_PREFIX = 'tx_static404-';
+	static public $TEMP_FILENAME_PREFIX = 'tx_static404';
 
 	/**
 	 * This function will be called by the clearCachePostProc hook
@@ -104,9 +104,9 @@ class tx_static404 {
 
 					// write to cache file
 					$urlParts = parse_url($domain);
-					$tempFilename = self::$TEMP_FILENAME_PREFIX.$urlParts['host'].'.html';
+					$tempFilename = $urlParts['host'].'.html';
 
-					$error = GeneralUtility::writeFileToTypo3tempDir(PATH_site.'typo3temp/'.$tempFilename, $content);
+					$error = GeneralUtility::writeFileToTypo3tempDir(PATH_site.'typo3temp/'.self::$TEMP_FILENAME_PREFIX.'/'.$tempFilename, $content);
 					if (!empty($error)) {
 						throw new \TYPO3\CMS\Core\Error\Exception($error);
 					}
@@ -115,8 +115,8 @@ class tx_static404 {
 
 					// The first pageUid is used as pid for the default 404
 					if (!$defaultAlreadyGenerated) {
-						$tempFilename = self::$TEMP_FILENAME_PREFIX.'default.html';
-						$error = GeneralUtility::writeFileToTypo3tempDir(PATH_site.'typo3temp/'.$tempFilename, $content);
+						$tempFilename = 'default.html';
+						$error = GeneralUtility::writeFileToTypo3tempDir(PATH_site.'typo3temp/'.self::$TEMP_FILENAME_PREFIX.'/'.$tempFilename, $content);
 						if (!empty($error)) {
 							throw new \TYPO3\CMS\Core\Error\Exception($error);
 						}
@@ -191,7 +191,7 @@ class tx_static404 {
 	 * @see disablePageNotFound_handling
 	 */
 	public function render404AndExit() {
-		$readFile = GeneralUtility::getFileAbsFileName('typo3temp/'.self::$TEMP_FILENAME_PREFIX.GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY').'.html');
+		$readFile = GeneralUtility::getFileAbsFileName('typo3temp/'.self::$TEMP_FILENAME_PREFIX.'/'.GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY').'.html');
 		if (!@is_file($readFile)) {
 			throw new \TYPO3\CMS\Core\Error\Exception('Enable to find static 404 file. Try to clear Typo3 cache.');
 		}

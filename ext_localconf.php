@@ -9,6 +9,6 @@ $TYPO3_CONF_VARS['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['clearCachePostP
 
 if (empty($extConf['disablePageNotFound_handling'])) {
 	// tell TYPO3 to serve our cached 404 when a page is not found
-	$TYPO3_CONF_VARS["FE"]["pageNotFound_handling"] = 'READFILE:typo3temp/'.tx_static404::$TEMP_FILENAME_PREFIX.\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY').'.html';
+	$TYPO3_CONF_VARS["FE"]["pageNotFound_handling"] = 'READFILE:typo3temp/'.tx_static404::$TEMP_FILENAME_PREFIX.'/'.\TYPO3\CMS\Core\Utility\GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY').'.html';
 	$TYPO3_CONF_VARS["FE"]["pageNotFound_handling_statheader"] = 'HTTP/1.0 404 Not Found';
 }
