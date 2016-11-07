@@ -104,7 +104,8 @@ class tx_static404 {
 
 					// write to cache file
 					$urlParts = parse_url($domain);
-					$tempFilename = $urlParts['host'].'.html';
+					$host = $this->tokenizeHost($urlParts['host']);
+					$tempFilename = $host.'.html';
 
 					$error = GeneralUtility::writeFileToTypo3tempDir(PATH_site.'typo3temp/'.self::$TEMP_FILENAME_PREFIX.'/'.$tempFilename, $content);
 					if (!empty($error)) {
@@ -183,6 +184,20 @@ class tx_static404 {
 	}
 
 	/**
+	 * Return a tokenized version of the host.
+	 * Useful to shorten the hostname.
+	 * @param $host
+	 * @return string
+	 */
+	private static function tokenizeHost($host) {
+		if (strlen($host) < 50) {
+			return $host;
+		}
+
+		return substr($host, 0, 40) . GeneralUtility::shortMD5($host, 10);
+	}
+
+	/**
 	 * Render the 404 page
 	 *
 	 * Can be used by another plugin to render the 404 page
@@ -191,7 +206,8 @@ class tx_static404 {
 	 * @see disablePageNotFound_handling
 	 */
 	public function render404AndExit() {
-		$readFile = GeneralUtility::getFileAbsFileName('typo3temp/'.self::$TEMP_FILENAME_PREFIX.'/'.GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY').'.html');
+		$host = self::tokenizeHost(GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY'));
+		$readFile = GeneralUtility::getFileAbsFileName('typo3temp/'.self::$TEMP_FILENAME_PREFIX.'/'.$host.'.html');
 		if (!@is_file($readFile)) {
 			throw new \TYPO3\CMS\Core\Error\Exception('Enable to find static 404 file. Try to clear Typo3 cache.');
 		}
@@ -202,6 +218,7 @@ class tx_static404 {
 		echo $fileContent;
 		exit;
 	}
+
 }
 
 if (defined('TYPO3_MODE') && $GLOBALS['TYPO3_CONF_VARS'][TYPO3_MODE]['XCLASS']['ext/static_404/class.tx_static404.php'])	{
