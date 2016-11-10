@@ -29,18 +29,18 @@ The plugin handles multidomain installation, and multilingual websites (if they 
     Below an excerpt of the _.htaccess file with the needed RewriteRule
     
     ```
-    ErrorDocument 404 /typo3temp/tx_static404-[YOU FULL DOMAIN NAME HERE].html
+    ErrorDocument 404 /typo3temp/tx_static404/[YOU FULL DOMAIN NAME HERE].html
     ```
     Replace `[YOU FULL DOMAIN NAME HERE]` by the domain of your installation, ie. :
     
     ```
-    ErrorDocument 404 /typo3temp/tx_static404-fr.example.com.html
+    ErrorDocument 404 /typo3temp/tx_static404/fr.example.com.html
     ```
     
     You can also use the default 404, which corresponds to the first page ID defined :
     
     ```
-    ErrorDocument 404 /typo3temp/tx_static404-default.html
+    ErrorDocument 404 /typo3temp/tx_static404/default.html
 
 ## Additionnal configuration
 
@@ -53,10 +53,14 @@ The plugin handles multidomain installation, and multilingual websites (if they 
     }
     ```
 
+2. Do not generate static 404 pages for domain records with a redirect
+
+In a website with multiple sys_domain records with redirects, you can generate 404 pages for all domains by disabling this option
+
 ## Troubleshootings
 
 If the clearCache command takes too long or never ends, check the TYPO3's log and/or the webserver's error log.
 Maybe the extension is misconfigured or maybe your server can't reach itself (check your /etc/hosts file).
 
 ## Credits
-&copy; 2013 GAYA La Nouvelle Agence [http://www.gaya.fr/]
+&copy; 2016 GAYA La Nouvelle Agence [http://www.gaya.fr/]

@@ -51,6 +51,10 @@ Additionnal configuration
 		$static404->render404AndExit();
 	}
 
+- Do not generate static 404 pages for domain records with a redirect
+
+In a website with multiple sys_domain records with redirects, you can generate 404 pages for all domains by disabling this option
+
 Troubleshootings
 ----------------
 

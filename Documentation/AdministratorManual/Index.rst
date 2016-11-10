@@ -14,6 +14,12 @@ ChangeLog
 ========== ====================================================================================
 Version:   Changes
 ========== ====================================================================================
+1.4.1      Update documentation
+1.4.0      Unable to create file in typo3temp with long domain names
+           Add possibility to generate static pages for domains with redirection
+1.3.0      Update documentation
+           Change 404 file path (add tx_static404 directory)
+1.2.0      Compatibility for TYPO3 7.6
 1.1.2      Remove .sxw documentation
 1.1.1      Small bug fixes.
            Check compatibility for TYPO3 6.2
