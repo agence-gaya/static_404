@@ -46,6 +46,13 @@ class tx_static404 {
 		$this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['static_404']);
 	}
 
+	private $extConf = null;
+
+	public function __construct() {
+		// load the extension configuration
+		$this->extConf = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['static_404']);
+	}
+
 	/**
 	 * This function will be called by the clearCachePostProc hook
 	 *
