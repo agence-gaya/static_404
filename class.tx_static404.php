@@ -116,7 +116,7 @@ class tx_static404 {
 						throw new \TYPO3\CMS\Core\Error\Exception($error);
 					}
 
-					$beUser->simplelog('Update the 404 cache for "'.$fetchUrl.'" to "'.$tempFilename.'"', 'static_404', 0);
+					$beUser->simplelog('Updated the 404 cache for "'.$fetchUrl.'" to "'.$tempFilename.'"', 'static_404', 0);
 
 					// The first pageUid is used as pid for the default 404
 					if (!$defaultAlreadyGenerated) {
@@ -126,7 +126,7 @@ class tx_static404 {
 							throw new \TYPO3\CMS\Core\Error\Exception($error);
 						}
 						$defaultAlreadyGenerated = true;
-						$beUser->simplelog('Update the 404 cache for "'.$fetchUrl.'" to "'.$tempFilename.'"', 'static_404', 0);
+						$beUser->simplelog('Updated the 404 cache for "'.$fetchUrl.'" to "'.$tempFilename.'"', 'static_404', 0);
 					}
 
 				} elseif ($getUrlReport['error'] != 0) {
@@ -214,7 +214,7 @@ class tx_static404 {
 		$host = self::tokenizeHost(GeneralUtility::getIndpEnv('TYPO3_HOST_ONLY'));
 		$readFile = GeneralUtility::getFileAbsFileName('typo3temp/'.self::$TEMP_FILENAME_PREFIX.'/'.$host.'.html');
 		if (!@is_file($readFile)) {
-			throw new \TYPO3\CMS\Core\Error\Exception('Enable to find static 404 file. Try to clear Typo3 cache.');
+			throw new \TYPO3\CMS\Core\Error\Exception('Unable to find static 404 file. Try to clear TYPO3 cache.');
 		}
 		header('HTTP/1.0 404 Not Found', null, 404);
 		$fileContent = GeneralUtility::getUrl($readFile);
