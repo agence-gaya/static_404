@@ -2,7 +2,7 @@
   "name": "gaya/static-404",
   "description": "Cache the 404 page as a static html file",
   "require": {
-    "typo3/cms": "~7.6"
+    "typo3/cms": "7.6.0 - 8.7.99"
   },
   "type": "typo3-cms-extension",
   "keywords": [
